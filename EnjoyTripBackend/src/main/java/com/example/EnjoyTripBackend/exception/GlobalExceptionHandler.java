@@ -1,5 +1,6 @@
 package com.example.EnjoyTripBackend.exception;
 
+import com.example.EnjoyTripBackend.dto.ResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> EnjoyTripExceptionHandler(RuntimeException e) {
         log.error(e.getMessage());
         return serverError();
+    }
+
+    @ExceptionHandler(CustomValidationException.class)
+    public ResponseEntity<?> validationApiException(CustomValidationException e) {
+        log.error(e.getMessage());
+        return new ResponseEntity<>(new ResponseDto<>(HttpStatus.BAD_REQUEST.value(), e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST);
     }
 
     private ResponseEntity<String> error(EnjoyTripException e) {
