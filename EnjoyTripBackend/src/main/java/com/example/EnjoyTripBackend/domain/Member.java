@@ -21,5 +21,6 @@ public class Member extends BaseTimeDomain{
     private Gender gender;
     private String phoneNumber;
     private MemberRole memberRole;
+    private String salt;
 
 }
