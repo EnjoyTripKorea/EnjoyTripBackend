@@ -8,4 +8,10 @@
         into member
         values (#{id}, #{email}, #{username}, #{password}, #{age}, #{phoneNumber}, #{gender}, #{memberRole}, now(), now())
     </insert>
+
+    <select id="findByEmail" parameterType="string">
+        select *
+          from member
+         where email = #{email}
+    </select>
 </mapper>
