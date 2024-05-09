@@ -2,6 +2,7 @@ package com.example.EnjoyTripBackend.service;
 
 import com.example.EnjoyTripBackend.domain.Member;
 import com.example.EnjoyTripBackend.domain.MemberRole;
+import com.example.EnjoyTripBackend.dto.member.LoginRequestDto;
 import com.example.EnjoyTripBackend.dto.member.SignUpRequestDto;
 import com.example.EnjoyTripBackend.exception.EnjoyTripException;
 import com.example.EnjoyTripBackend.exception.ErrorCode;
@@ -44,5 +45,15 @@ public class MemberService {
                 .build();
 
         return memberRepository.save(member);
+    }
+
+    public Long login(LoginRequestDto loginRequestDto) {
+
+        Member member = memberRepository.findByEmail(loginRequestDto.getEmail()).orElseThrow(() -> new EnjoyTripException(ErrorCode.MEMBER_NOT_FOUND));
+
+        if (!member.getPassword().equals(encrypt.encode(loginRequestDto.getPassword(), member.getSalt()))){
+            throw new EnjoyTripException(ErrorCode.LOGIN_FAIL);
+        }
+        return member.getId();
     }
 }
