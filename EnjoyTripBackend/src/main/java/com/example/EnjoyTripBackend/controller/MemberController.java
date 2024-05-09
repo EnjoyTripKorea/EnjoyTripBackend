@@ -37,4 +37,13 @@ public class MemberController {
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginRequestDto.getEmail());
         return ResponseEntity.ok().body("로그인 완료");
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return ResponseEntity.ok().body("로그아웃 완료");
+    }
 }
