@@ -15,7 +15,7 @@ import java.io.IOException;
 @Slf4j
 public class LoginCheckFilter implements Filter {
 
-    private static final String[] whitelist = {"/api/signup", "/api/login", "/api/logout"};
+    private static final String[] whitelist = {"/api/signUp", "/api/login", "/api/logout"};
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
