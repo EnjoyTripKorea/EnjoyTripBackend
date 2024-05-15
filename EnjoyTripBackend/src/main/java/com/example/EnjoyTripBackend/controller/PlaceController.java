@@ -41,7 +41,7 @@ public class PlaceController {
         return ResponseEntity.ok().body(placeService.findAll(pageable));
     }
 
-    @GetMapping("/place/searchword")
+    @PostMapping("/place/searchword")
     public ResponseEntity<ResponseResult<List<Optional<PlaceResponseDto>>>> findSearchWordPlaces(@RequestBody PlaceSearchwordRequestDto placeSearchwordRequestDto,
                                                                                                 @PageableDefault(size = 6)Pageable pageable){
         return ResponseEntity.ok().body(placeService.findSearchWordPlaces(placeSearchwordRequestDto,pageable));
