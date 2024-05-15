@@ -10,5 +10,6 @@
     <mappers>
         <mapper resource="mapper/member-query.xml"/>
         <mapper resource="mapper/board-query.xml"/>
+        <mapper resource="mapper/notice-query.xml"/>
     </mappers>
 </configuration>
