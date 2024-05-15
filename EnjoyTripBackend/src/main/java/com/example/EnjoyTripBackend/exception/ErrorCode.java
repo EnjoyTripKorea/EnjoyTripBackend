@@ -14,7 +14,8 @@ public enum ErrorCode {
     LOGIN_FAIL(HttpStatus.UNAUTHORIZED,"아이디 또는 비밀번호가 잘못 되었습니다."),
     ANONYMOUS_USER(HttpStatus.UNAUTHORIZED,"인증되지 않는 사용자입니다. 로그인을 진행해 주세요"),
     REQUEST_METHOD_NOT_ALLOW(HttpStatus.METHOD_NOT_ALLOWED,"올바르지 않는 http method 입니다."),
-    BOARD_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 공지사항입니다.");
+    BOARD_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 게시글입니다."),
+    NOTICE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 공지사항입니다.");
 
     private final HttpStatus httpstatus;
     private final String message;
