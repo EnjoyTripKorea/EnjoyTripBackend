@@ -24,7 +24,7 @@ public class LoginCheckFilter implements Filter {
 
     private final ObjectMapper objectMapper;
 
-    private static final String[] whitelist = {"/api/signUp", "/api/login", "/api/logout","/api/place", "api/place/searchword"};
+    private static final String[] whitelist = {"/api/signUp", "/api/login", "/api/logout","/api/place", "/api/place/searchword"};
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
