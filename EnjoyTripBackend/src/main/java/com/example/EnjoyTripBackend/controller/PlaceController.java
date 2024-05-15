@@ -7,6 +7,8 @@ import com.example.EnjoyTripBackend.service.PlaceService;
 import com.example.EnjoyTripBackend.service.S3Service;
 import com.example.EnjoyTripBackend.util.SessionUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +35,7 @@ public class PlaceController {
     }
 
     @GetMapping("/place")
-    public ResponseEntity<ResponseResult<List<PlaceResponseDto>>> findAll(){
-        return ResponseEntity.ok().body(placeService.findAll());
+    public ResponseEntity<ResponseResult<List<PlaceResponseDto>>> findAll(@PageableDefault(size = 6)Pageable pageable){
+        return ResponseEntity.ok().body(placeService.findAll(pageable));
     }
 }

@@ -9,8 +9,11 @@
         values (#{title}, #{content}, #{placeImageUrl}, #{userEmail}, now(), now())
     </insert>
 
-    <select id="findAll" resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
+    <select id="findAll"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
         select place_id, title, content, placeImageUrl, createdDate
           from place
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
     </select>
+
 </mapper>
