@@ -1,6 +1,7 @@
 package com.example.EnjoyTripBackend.controller;
 
 import com.example.EnjoyTripBackend.dto.Board.BoardDto;
+import com.example.EnjoyTripBackend.dto.Board.BoardListResponseDto;
 import com.example.EnjoyTripBackend.service.BoardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,8 +34,8 @@ public class BoardController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<BoardDto>> findAll() {
-        List<BoardDto> boardList = boardService.findAll();
+    public ResponseEntity<BoardListResponseDto> findAll() {
+        BoardListResponseDto boardList = boardService.findAll();
         return ResponseEntity.status(OK).body(boardList);
     }
 
