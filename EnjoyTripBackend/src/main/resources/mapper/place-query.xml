@@ -16,4 +16,16 @@
         offset #{pageable.offset}
     </select>
 
+    <select id="findSearchWordPlaces"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
+        select place_id, title, content, placeImageUrl, createdDate
+          from place
+        <where>
+            <if test="data.searchWord != null and data.searchWord != ''">
+                AND content LIKE CONCAT('%', #{data.searchWord}, '%')
+            </if>
+        </where>
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
+
 </mapper>

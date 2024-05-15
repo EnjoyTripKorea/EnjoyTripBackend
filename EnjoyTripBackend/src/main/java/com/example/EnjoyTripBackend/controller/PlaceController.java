@@ -3,6 +3,7 @@ package com.example.EnjoyTripBackend.controller;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.place.PlaceRequestDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceResponseDto;
+import com.example.EnjoyTripBackend.dto.place.PlaceSearchwordRequestDto;
 import com.example.EnjoyTripBackend.service.PlaceService;
 import com.example.EnjoyTripBackend.service.S3Service;
 import com.example.EnjoyTripBackend.util.SessionUser;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -37,5 +39,11 @@ public class PlaceController {
     @GetMapping("/place")
     public ResponseEntity<ResponseResult<List<PlaceResponseDto>>> findAll(@PageableDefault(size = 6)Pageable pageable){
         return ResponseEntity.ok().body(placeService.findAll(pageable));
+    }
+
+    @GetMapping("/place/searchword")
+    public ResponseEntity<ResponseResult<List<Optional<PlaceResponseDto>>>> findSearchWordPlaces(@RequestBody PlaceSearchwordRequestDto placeSearchwordRequestDto,
+                                                                                                @PageableDefault(size = 6)Pageable pageable){
+        return ResponseEntity.ok().body(placeService.findSearchWordPlaces(placeSearchwordRequestDto,pageable));
     }
 }
