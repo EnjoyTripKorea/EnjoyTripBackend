@@ -1,6 +1,8 @@
 package com.example.EnjoyTripBackend.controller;
 
+import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.place.PlaceRequestDto;
+import com.example.EnjoyTripBackend.dto.place.PlaceResponseDto;
 import com.example.EnjoyTripBackend.service.PlaceService;
 import com.example.EnjoyTripBackend.service.S3Service;
 import com.example.EnjoyTripBackend.util.SessionUser;
@@ -8,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -26,5 +30,10 @@ public class PlaceController {
         placeRequestDto.setPlaceImageUrl(imageUrl);
         placeService.save(userEmail, placeRequestDto);
         return ResponseEntity.status(CREATED).body("여행 장소 정보 등록 완료");
+    }
+
+    @GetMapping("/place")
+    public ResponseEntity<ResponseResult<List<PlaceResponseDto>>> findAll(){
+        return ResponseEntity.ok().body(placeService.findAll());
     }
 }

@@ -5,8 +5,12 @@
 <mapper namespace="com.example.EnjoyTripBackend.repository.PlaceRepository">
     <insert id="save" parameterType="com.example.EnjoyTripBackend.domain.Place">
         insert
-          into place
-        values (#{id}, #{title}, #{content}, #{placeImageUrl}, #{userEmail}, now(), now())
+          into place(title,content,placeImageUrl,userEmail,createdDate,modifiedDate)
+        values (#{title}, #{content}, #{placeImageUrl}, #{userEmail}, now(), now())
     </insert>
 
+    <select id="findAll" resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
+        select place_id, title, content, placeImageUrl, createdDate
+          from place
+    </select>
 </mapper>
