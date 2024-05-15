@@ -57,6 +57,6 @@ public class S3Service {
         } catch (IOException e) {
             throw new EnjoyTripException(ErrorCode.FILE_UPLOAD_NOT_WORKING, e.getMessage());
         }
-        return s3Client.getUrl(bucket, originalFilename).toString();
+        return s3Client.getUrl(bucket, uuid+originalFilename).toString();
     }
 }
