@@ -67,4 +67,9 @@ public class PlaceService {
     public Long updateBlog(Long id, PlaceRequestDto placeRequestDto) {
         return placeRepository.updateBlog(id, placeRequestDto);
     }
+
+    @Transactional
+    public Long deleteBlog(Long id) {
+        return placeRepository.deleteBlog(id);
+    }
 }

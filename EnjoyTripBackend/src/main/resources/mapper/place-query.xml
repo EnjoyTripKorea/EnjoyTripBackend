@@ -40,4 +40,7 @@
          where place_id = #{id}
     </update>
 
+    <delete id="deleteBlog">
+        delete from place where place_id = #{id};
+    </delete>
 </mapper>

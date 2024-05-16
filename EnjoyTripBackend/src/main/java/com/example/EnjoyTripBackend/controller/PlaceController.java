@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 @RestController
 @RequestMapping("/api")
@@ -63,5 +64,11 @@ public class PlaceController {
             placeService.updateBlog(id, placeRequestDto);
         }
         return ResponseEntity.ok().body("게시글 수정 완료");
+    }
+
+    @DeleteMapping("/place/{id}")
+    public ResponseEntity<Void> deleteBlog(@PathVariable("id") Long id){
+        placeService.deleteBlog(id);
+        return ResponseEntity.status(NO_CONTENT).build();
     }
 }
