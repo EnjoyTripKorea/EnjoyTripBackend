@@ -5,7 +5,7 @@
 <mapper namespace="com.example.EnjoyTripBackend.repository.MemberRepository">
     <insert id="save" parameterType="com.example.EnjoyTripBackend.domain.Member">
         insert
-        into member
+          into member
         values (#{id}, #{email}, #{username}, #{password}, #{age}, #{phoneNumber}, #{gender}, #{memberRole}, #{salt}, now(), now())
     </insert>
 
