@@ -48,8 +48,20 @@ public class PlaceController {
     }
 
     @GetMapping("/place/{id}")
-    public ResponseEntity< ResponseResult<PlaceResponseDto>> findOne(@PathVariable("id") Long id){
+    public ResponseEntity<ResponseResult<PlaceResponseDto>> findOne(@PathVariable("id") Long id){
         ResponseResult<PlaceResponseDto> placeResponseDtoResponseResult = placeService.fineOne(id);
         return ResponseEntity.ok().body(placeResponseDtoResponseResult);
+    }
+
+    @PutMapping("/place/{id}")
+    public ResponseEntity<String> modifyBlog(@PathVariable("id") Long id, @SessionUser String userId, PlaceRequestDto placeRequestDto,
+                                             @RequestPart(value="file") MultipartFile file){
+        PlaceResponseDto placeResponseDto = placeService.findById(id);
+        placeRequestDto.setPlaceImageUrl(s3Service.upload(file));
+        if (userId.equals(placeResponseDto.getUserEmail())){
+            placeRequestDto.setUserEmail(userId);
+            placeService.updateBlog(id, placeRequestDto);
+        }
+        return ResponseEntity.ok().body("게시글 수정 완료");
     }
 }

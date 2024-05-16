@@ -12,5 +12,6 @@ public class PlaceResponseDto {
     private String title;
     private String content;
     private String placeImageUrl;
+    private String userEmail;
     private LocalDate createdDate;
 }

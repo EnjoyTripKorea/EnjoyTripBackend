@@ -55,7 +55,16 @@ public class PlaceService {
     }
 
     public ResponseResult<PlaceResponseDto> fineOne(Long id) {
-        PlaceResponseDto placeResponseDto = placeRepository.findOne(id).orElseThrow(() -> new EnjoyTripException(ErrorCode.MEMBER_NOT_FOUND));
+        PlaceResponseDto placeResponseDto = placeRepository.findOne(id).orElseThrow(() -> new EnjoyTripException(ErrorCode.CONTENT_NOT_FOUNT));
         return ResponseResult.of("여행 관광지 게시글 상세보기 입니다.", placeResponseDto);
+    }
+
+    public PlaceResponseDto findById(Long id) {
+        return placeRepository.findOne(id).orElseThrow(() -> new EnjoyTripException(ErrorCode.CONTENT_NOT_FOUNT));
+    }
+
+    @Transactional
+    public Long updateBlog(Long id, PlaceRequestDto placeRequestDto) {
+        return placeRepository.updateBlog(id, placeRequestDto);
     }
 }

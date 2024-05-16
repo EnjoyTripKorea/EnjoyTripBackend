@@ -10,14 +10,14 @@
     </insert>
 
     <select id="findAll"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
-        select place_id, title, content, placeImageUrl, createdDate
+        select place_id, title, content, placeImageUrl, userEmail, createdDate
           from place
          limit #{pageable.pageSize}
         offset #{pageable.offset}
     </select>
 
     <select id="findSearchWordPlaces"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
-        select place_id, title, content, placeImageUrl, createdDate
+        select place_id, title, content, placeImageUrl, userEmail, createdDate
           from place
         <where>
             <if test="data.searchWord != null and data.searchWord != ''">
@@ -29,9 +29,15 @@
     </select>
 
     <select id="findOne"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
-        select place_id, title, content, placeImageUrl, createdDate
+        select place_id, title, content, placeImageUrl, userEmail, createdDate
           from place
          where place_id = #{id}
     </select>
+
+    <update id="updateBlog">
+        update place
+           set title = #{placeRequestDto.title}, content = #{placeRequestDto.content}, placeImageUrl = #{placeRequestDto.placeImageUrl}, createdDate = now()
+         where place_id = #{id}
+    </update>
 
 </mapper>
