@@ -28,4 +28,10 @@
         offset #{pageable.offset}
     </select>
 
+    <select id="findOne"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
+        select place_id, title, content, placeImageUrl, createdDate
+          from place
+         where place_id = #{id}
+    </select>
+
 </mapper>

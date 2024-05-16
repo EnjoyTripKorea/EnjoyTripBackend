@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 public class PlaceResponseDto {
-    private Long placeId;
+    private Long place_id;
     private String title;
     private String content;
     private String placeImageUrl;

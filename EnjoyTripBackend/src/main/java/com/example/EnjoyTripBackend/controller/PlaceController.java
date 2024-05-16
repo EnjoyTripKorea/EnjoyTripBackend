@@ -46,4 +46,10 @@ public class PlaceController {
                                                                                                 @PageableDefault(size = 6)Pageable pageable){
         return ResponseEntity.ok().body(placeService.findSearchWordPlaces(placeSearchwordRequestDto,pageable));
     }
+
+    @GetMapping("/place/{id}")
+    public ResponseEntity< ResponseResult<PlaceResponseDto>> findOne(@PathVariable("id") Long id){
+        ResponseResult<PlaceResponseDto> placeResponseDtoResponseResult = placeService.fineOne(id);
+        return ResponseEntity.ok().body(placeResponseDtoResponseResult);
+    }
 }

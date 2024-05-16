@@ -6,6 +6,8 @@ import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.place.PlaceRequestDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceResponseDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceSearchwordRequestDto;
+import com.example.EnjoyTripBackend.exception.EnjoyTripException;
+import com.example.EnjoyTripBackend.exception.ErrorCode;
 import com.example.EnjoyTripBackend.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -51,5 +52,10 @@ public class PlaceService {
 //                .map(Optional::get)
 //                .collect(Collectors.toList());
         return ResponseResult.of("검색어 관련 여행 관광지 게시글 목록입니다.", searchWordPlaces);
+    }
+
+    public ResponseResult<PlaceResponseDto> fineOne(Long id) {
+        PlaceResponseDto placeResponseDto = placeRepository.findOne(id).orElseThrow(() -> new EnjoyTripException(ErrorCode.MEMBER_NOT_FOUND));
+        return ResponseResult.of("여행 관광지 게시글 상세보기 입니다.", placeResponseDto);
     }
 }

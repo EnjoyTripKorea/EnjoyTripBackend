@@ -14,4 +14,5 @@ public interface PlaceRepository {
     Long save(Place place);
     List<PlaceResponseDto> findAll(PageRequestList<?> requestList);
     List<Optional<PlaceResponseDto>> findSearchWordPlaces(PageRequestList<?> requestList);
+    Optional<PlaceResponseDto> findOne(Long id);
 }
