@@ -8,4 +8,5 @@ import lombok.Getter;
 public class ResponseResult<T> {
     private final String msg;
     private final T data;
+    private final int totalPages;
 }
