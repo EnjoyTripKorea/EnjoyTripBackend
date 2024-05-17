@@ -14,4 +14,5 @@ public interface GolfRepository {
     List<GolfResponseDto> findAll(PageRequestList<?> requestList);
     Optional<GolfResponseDto> findById(Long id);
     List<GolfResponseDto> findAllBySearch(PageRequestList<?> requestList);
+    Long findTotalCount();
 }

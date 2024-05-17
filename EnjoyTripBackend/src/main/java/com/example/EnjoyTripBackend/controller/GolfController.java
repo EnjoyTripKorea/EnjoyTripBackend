@@ -1,5 +1,6 @@
 package com.example.EnjoyTripBackend.controller;
 
+import com.example.EnjoyTripBackend.dto.NonPagingResponseResult;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.golf.GolfRequestDto;
 import com.example.EnjoyTripBackend.dto.golf.GolfResponseDto;
@@ -25,7 +26,7 @@ public class GolfController {
     }
 
     @GetMapping("/golf/{id}")
-    public ResponseEntity<ResponseResult<GolfResponseDto>> golfDetail(@PathVariable("id")Long id){
+    public ResponseEntity<NonPagingResponseResult<GolfResponseDto>> golfDetail(@PathVariable("id")Long id){
         return ResponseEntity.ok().body(golfService.findById(id));
     }
 

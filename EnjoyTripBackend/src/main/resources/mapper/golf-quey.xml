@@ -36,4 +36,9 @@
          limit #{pageable.pageSize}
         offset #{pageable.offset}
     </select>
+
+    <select id="findTotalCount" resultType="long">
+        select count(*)
+          from golf
+    </select>
 </mapper>

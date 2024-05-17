@@ -1,6 +1,7 @@
 package com.example.EnjoyTripBackend.service;
 
 import com.example.EnjoyTripBackend.domain.Golf;
+import com.example.EnjoyTripBackend.dto.NonPagingResponseResult;
 import com.example.EnjoyTripBackend.dto.PageRequestList;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.golf.GolfClubListDto;
@@ -44,11 +45,14 @@ public class GolfService {
                 .pageable(pageable)
                 .build();
 
-        return ResponseResult.of("골프 정보 게시글 목록입니다.", golfRepository.findAll(requestList));
+        long totalCount = golfRepository.findTotalCount();
+        int totalPages = (int) Math.ceil((double) totalCount / pageable.getPageSize());
+
+        return ResponseResult.of("골프 정보 게시글 목록입니다.", golfRepository.findAll(requestList),totalPages);
     }
 
-    public ResponseResult<GolfResponseDto> findById(Long id) {
-        return ResponseResult.of("골프 상세 정보 게시글 입니다.", golfRepository.findById(id).orElseThrow(() -> new EnjoyTripException(ErrorCode.CONTENT_NOT_FOUNT)));
+    public NonPagingResponseResult<GolfResponseDto> findById(Long id) {
+        return NonPagingResponseResult.of("골프 상세 정보 게시글 입니다.", golfRepository.findById(id).orElseThrow(() -> new EnjoyTripException(ErrorCode.CONTENT_NOT_FOUNT)));
     }
 
     public ResponseResult<List<GolfResponseDto>> golfSearchList(Pageable pageable, GolfRequestDto golfRequestDto) {
@@ -56,6 +60,9 @@ public class GolfService {
                 .pageable(pageable)
                 .data(golfRequestDto)
                 .build();
-        return ResponseResult.of("검색어 기반 골프 정보 게시글 목록입니다.", golfRepository.findAllBySearch(requestList));
+        List<GolfResponseDto> golfResponseDto = golfRepository.findAllBySearch(requestList);
+        long totalCount = golfResponseDto.size();
+        int totalPages = (int) Math.ceil((double) totalCount / pageable.getPageSize());
+        return ResponseResult.of("검색어 기반 골프 정보 게시글 목록입니다.", golfRepository.findAllBySearch(requestList),totalPages);
     }
 }
