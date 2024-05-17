@@ -8,4 +8,11 @@
           into golf
         values (#{id}, #{place}, #{location}, #{date}, #{golfImageUrl}, #{greenFeeWeek}, #{greenFeeWeekend}, #{latitude}, #{longitude}, now(), now())
     </insert>
+
+    <select id="findAll"  resultType="com.example.EnjoyTripBackend.dto.golf.GolfResponseDto">
+        select golf_id, golfclub_name, location, date, golf_imageUrl, green_fee_week, green_fee_weekend, latitude, longitude
+          from golf
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
 </mapper>

@@ -1,11 +1,17 @@
 package com.example.EnjoyTripBackend.service;
 
 import com.example.EnjoyTripBackend.domain.Golf;
+import com.example.EnjoyTripBackend.dto.PageRequestList;
+import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.golf.GolfClubListDto;
+import com.example.EnjoyTripBackend.dto.golf.GolfResponseDto;
 import com.example.EnjoyTripBackend.repository.GolfRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,5 +34,13 @@ public class GolfService {
                 .build();
 
         return golfRepository.save(golf);
+    }
+
+    public ResponseResult<List<GolfResponseDto>> golfList(Pageable pageable) {
+        PageRequestList<?> requestList = PageRequestList.builder()
+                .pageable(pageable)
+                .build();
+
+        return ResponseResult.of("골프 정보 게시글 목록입니다.", golfRepository.findAll(requestList));
     }
 }
