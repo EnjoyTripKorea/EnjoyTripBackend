@@ -15,7 +15,8 @@ public enum ErrorCode {
     ANONYMOUS_USER(HttpStatus.UNAUTHORIZED,"인증되지 않는 사용자입니다. 로그인을 진행해 주세요"),
     REQUEST_METHOD_NOT_ALLOW(HttpStatus.METHOD_NOT_ALLOWED,"올바르지 않는 http method 입니다."),
     FILE_UPLOAD_NOT_WORKING(HttpStatus.BAD_REQUEST,"파일 업로드 실패하였습니다."),
-    CONTENT_NOT_FOUNT(HttpStatus.NOT_FOUND, "찾고자 하는 글이 없습니다.");
+    CONTENT_NOT_FOUNT(HttpStatus.NOT_FOUND, "찾고자 하는 글이 없습니다."),
+    FAIL_INSERT_GOLF_DATA(HttpStatus.INTERNAL_SERVER_ERROR, "데이터베이스에 골프 데이터 저장에 실패하였습니다");
 
     private final HttpStatus httpstatus;
     private final String message;
