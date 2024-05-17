@@ -21,4 +21,19 @@
           from golf
          where golf_id = #{id}
     </select>
+
+    <select id="findAllBySearch"  resultType="com.example.EnjoyTripBackend.dto.golf.GolfResponseDto">
+        select golf_id, golfclub_name, location, date, golf_imageUrl, green_fee_week, green_fee_weekend, latitude, longitude
+          from golf
+        <where>
+            <if test="data.location != null and data.location != ''">
+                and location LIKE CONCAT('%', #{data.location}, '%')
+            </if>
+            <if test="data.date != null and data.date != ''">
+                and date = #{data.date}
+            </if>
+        </where>
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
 </mapper>

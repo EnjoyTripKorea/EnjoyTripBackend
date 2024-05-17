@@ -1,16 +1,14 @@
 package com.example.EnjoyTripBackend.controller;
 
 import com.example.EnjoyTripBackend.dto.ResponseResult;
+import com.example.EnjoyTripBackend.dto.golf.GolfRequestDto;
 import com.example.EnjoyTripBackend.dto.golf.GolfResponseDto;
 import com.example.EnjoyTripBackend.service.GolfService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +27,11 @@ public class GolfController {
     @GetMapping("/golf/{id}")
     public ResponseEntity<ResponseResult<GolfResponseDto>> golfDetail(@PathVariable("id")Long id){
         return ResponseEntity.ok().body(golfService.findById(id));
+    }
+
+    @GetMapping("/golf/search")
+    public ResponseEntity<ResponseResult<List<GolfResponseDto>>> golfSearchList(@PageableDefault(size = 20) Pageable pageable, @RequestBody GolfRequestDto golfRequestDto){
+        return ResponseEntity.ok().body(golfService.golfSearchList(pageable, golfRequestDto));
     }
 
 }

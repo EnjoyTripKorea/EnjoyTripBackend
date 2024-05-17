@@ -13,4 +13,5 @@ public interface GolfRepository {
     Long save(Golf golf);
     List<GolfResponseDto> findAll(PageRequestList<?> requestList);
     Optional<GolfResponseDto> findById(Long id);
+    List<GolfResponseDto> findAllBySearch(PageRequestList<?> requestList);
 }

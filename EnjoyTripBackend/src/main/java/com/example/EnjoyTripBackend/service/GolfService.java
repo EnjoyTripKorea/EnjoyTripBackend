@@ -4,6 +4,7 @@ import com.example.EnjoyTripBackend.domain.Golf;
 import com.example.EnjoyTripBackend.dto.PageRequestList;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.golf.GolfClubListDto;
+import com.example.EnjoyTripBackend.dto.golf.GolfRequestDto;
 import com.example.EnjoyTripBackend.dto.golf.GolfResponseDto;
 import com.example.EnjoyTripBackend.exception.EnjoyTripException;
 import com.example.EnjoyTripBackend.exception.ErrorCode;
@@ -48,5 +49,13 @@ public class GolfService {
 
     public ResponseResult<GolfResponseDto> findById(Long id) {
         return ResponseResult.of("골프 상세 정보 게시글 입니다.", golfRepository.findById(id).orElseThrow(() -> new EnjoyTripException(ErrorCode.CONTENT_NOT_FOUNT)));
+    }
+
+    public ResponseResult<List<GolfResponseDto>> golfSearchList(Pageable pageable, GolfRequestDto golfRequestDto) {
+        PageRequestList<?> requestList = PageRequestList.builder()
+                .pageable(pageable)
+                .data(golfRequestDto)
+                .build();
+        return ResponseResult.of("검색어 기반 골프 정보 게시글 목록입니다.", golfRepository.findAllBySearch(requestList));
     }
 }
