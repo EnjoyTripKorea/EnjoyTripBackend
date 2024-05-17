@@ -6,9 +6,11 @@ import com.example.EnjoyTripBackend.dto.golf.GolfResponseDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface GolfRepository {
     Long save(Golf golf);
     List<GolfResponseDto> findAll(PageRequestList<?> requestList);
+    Optional<GolfResponseDto> findById(Long id);
 }

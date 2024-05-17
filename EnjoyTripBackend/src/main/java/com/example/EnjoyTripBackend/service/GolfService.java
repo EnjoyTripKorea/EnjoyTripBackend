@@ -5,6 +5,8 @@ import com.example.EnjoyTripBackend.dto.PageRequestList;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.golf.GolfClubListDto;
 import com.example.EnjoyTripBackend.dto.golf.GolfResponseDto;
+import com.example.EnjoyTripBackend.exception.EnjoyTripException;
+import com.example.EnjoyTripBackend.exception.ErrorCode;
 import com.example.EnjoyTripBackend.repository.GolfRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -42,5 +44,9 @@ public class GolfService {
                 .build();
 
         return ResponseResult.of("골프 정보 게시글 목록입니다.", golfRepository.findAll(requestList));
+    }
+
+    public ResponseResult<GolfResponseDto> findById(Long id) {
+        return ResponseResult.of("골프 상세 정보 게시글 입니다.", golfRepository.findById(id).orElseThrow(() -> new EnjoyTripException(ErrorCode.CONTENT_NOT_FOUNT)));
     }
 }
