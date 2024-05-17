@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.EnjoyTripBackend.repository.PlaceRepository">
+    <insert id="save" parameterType="com.example.EnjoyTripBackend.domain.Place">
+        insert
+          into place(title,content,placeImageUrl,userEmail,createdDate,modifiedDate)
+        values (#{title}, #{content}, #{placeImageUrl}, #{userEmail}, now(), now())
+    </insert>
+
+    <select id="findAll"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
+        select place_id, title, content, placeImageUrl, userEmail, createdDate
+          from place
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
+
+    <select id="findSearchWordPlaces"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
+        select place_id, title, content, placeImageUrl, userEmail, createdDate
+          from place
+        <where>
+            <if test="data.searchWord != null and data.searchWord != ''">
+                AND content LIKE CONCAT('%', #{data.searchWord}, '%')
+            </if>
+        </where>
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
+
+    <select id="findOne"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
+        select place_id, title, content, placeImageUrl, userEmail, createdDate
+          from place
+         where place_id = #{id}
+    </select>
+
+    <update id="updateBlog">
+        update place
+           set title = #{placeRequestDto.title}, content = #{placeRequestDto.content}, placeImageUrl = #{placeRequestDto.placeImageUrl}, createdDate = now()
+         where place_id = #{id}
+    </update>
+
+    <delete id="deleteBlog">
+        delete from place where place_id = #{id};
+    </delete>
+</mapper>
