@@ -16,6 +16,11 @@
         offset #{pageable.offset}
     </select>
 
+    <select id="findTotalCount" resultType="long">
+        select count(*)
+          from place
+    </select>
+
     <select id="findSearchWordPlaces"  resultType="com.example.EnjoyTripBackend.dto.place.PlaceResponseDto">
         select place_id, title, content, placeImageUrl, userEmail, createdDate
           from place

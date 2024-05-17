@@ -1,5 +1,6 @@
 package com.example.EnjoyTripBackend.controller;
 
+import com.example.EnjoyTripBackend.dto.NonPagingResponseResult;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.place.PlaceRequestDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceResponseDto;
@@ -49,8 +50,8 @@ public class PlaceController {
     }
 
     @GetMapping("/place/{id}")
-    public ResponseEntity<ResponseResult<PlaceResponseDto>> findOne(@PathVariable("id") Long id){
-        ResponseResult<PlaceResponseDto> placeResponseDtoResponseResult = placeService.fineOne(id);
+    public ResponseEntity<NonPagingResponseResult<PlaceResponseDto>> findOne(@PathVariable("id") Long id){
+        NonPagingResponseResult<PlaceResponseDto> placeResponseDtoResponseResult = placeService.fineOne(id);
         return ResponseEntity.ok().body(placeResponseDtoResponseResult);
     }
 
