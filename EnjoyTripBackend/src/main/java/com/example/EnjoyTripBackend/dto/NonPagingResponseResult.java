@@ -1,12 +1,11 @@
 package com.example.EnjoyTripBackend.dto;
 
-import lombok.RequiredArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor(staticName = "of")
-public class ResponseResult<T> {
+public class NonPagingResponseResult<T> {
     private final String msg;
     private final T data;
-    private final int totalPages;
 }

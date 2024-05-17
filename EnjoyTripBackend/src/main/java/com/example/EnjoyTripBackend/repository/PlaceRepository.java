@@ -15,6 +15,7 @@ public interface PlaceRepository {
 
     Long save(Place place);
     List<PlaceResponseDto> findAll(PageRequestList<?> requestList);
+    Long findTotalCount();
     List<Optional<PlaceResponseDto>> findSearchWordPlaces(PageRequestList<?> requestList);
     Optional<PlaceResponseDto> findOne(Long id);
     Long updateBlog(@Param("id") Long id, @Param("placeRequestDto") PlaceRequestDto placeRequestDto);
