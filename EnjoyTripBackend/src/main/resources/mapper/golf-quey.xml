@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.EnjoyTripBackend.repository.GolfRepository">
+    <insert id="save" parameterType="com.example.EnjoyTripBackend.domain.Golf">
+        insert
+          into golf
+        values (#{id}, #{place}, #{location}, #{date}, #{golfImageUrl}, #{greenFeeWeek}, #{greenFeeWeekend}, #{latitude}, #{longitude}, now(), now())
+    </insert>
+
+    <select id="findAll"  resultType="com.example.EnjoyTripBackend.dto.golf.GolfResponseDto">
+        select golf_id, golfclub_name, location, date, golf_imageUrl, green_fee_week, green_fee_weekend, latitude, longitude
+          from golf
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
+
+    <select id="findById"  resultType="com.example.EnjoyTripBackend.dto.golf.GolfResponseDto">
+        select golf_id, golfclub_name, location, date, golf_imageUrl, green_fee_week, green_fee_weekend, latitude, longitude
+          from golf
+         where golf_id = #{id}
+    </select>
+
+    <select id="findAllBySearch"  resultType="com.example.EnjoyTripBackend.dto.golf.GolfResponseDto">
+        select golf_id, golfclub_name, location, date, golf_imageUrl, green_fee_week, green_fee_weekend, latitude, longitude
+          from golf
+        <where>
+            <if test="data.location != null and data.location != ''">
+                and location LIKE CONCAT('%', #{data.location}, '%')
+            </if>
+            <if test="data.date != null and data.date != ''">
+                and date = #{data.date}
+            </if>
+        </where>
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
+
+    <select id="findTotalCount" resultType="long">
+        select count(*)
+          from golf
+    </select>
+</mapper>
