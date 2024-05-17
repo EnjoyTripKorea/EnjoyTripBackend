@@ -1,6 +1,7 @@
 package com.example.EnjoyTripBackend.service;
 
 import com.example.EnjoyTripBackend.domain.Place;
+import com.example.EnjoyTripBackend.dto.NonPagingResponseResult;
 import com.example.EnjoyTripBackend.dto.PageRequestList;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.place.PlaceRequestDto;
@@ -35,10 +36,12 @@ public class PlaceService {
     }
 
     public ResponseResult<List<PlaceResponseDto>> findAll(Pageable pageable) {
+        long totalCount = placeRepository.findTotalCount();
+        int totalPages = (int) Math.ceil((double) totalCount / pageable.getPageSize());
         PageRequestList<?> requestList = PageRequestList.builder()
                 .pageable(pageable)
                 .build();
-        return ResponseResult.of("여행 관광지 게시글 목록입니다.", placeRepository.findAll(requestList));
+        return ResponseResult.of("여행 관광지 게시글 목록입니다.", placeRepository.findAll(requestList), totalPages);
     }
 
     public ResponseResult<List<Optional<PlaceResponseDto>>> findSearchWordPlaces(PlaceSearchwordRequestDto placeSearchwordRequestDto, Pageable pageable){
@@ -47,16 +50,14 @@ public class PlaceService {
                 .pageable(pageable)
                 .build();
         List<Optional<PlaceResponseDto>> searchWordPlaces = placeRepository.findSearchWordPlaces(requestList);
-//        List<PlaceResponseDto> filteredPlaces = searchWordPlaces.stream()
-//                .filter(Optional::isPresent)
-//                .map(Optional::get)
-//                .collect(Collectors.toList());
-        return ResponseResult.of("검색어 관련 여행 관광지 게시글 목록입니다.", searchWordPlaces);
+        int size = searchWordPlaces.size();
+        int totalPages = size / pageable.getPageSize();
+        return ResponseResult.of("검색어 관련 여행 관광지 게시글 목록입니다.", searchWordPlaces, totalPages);
     }
 
-    public ResponseResult<PlaceResponseDto> fineOne(Long id) {
+    public NonPagingResponseResult<PlaceResponseDto> fineOne(Long id) {
         PlaceResponseDto placeResponseDto = placeRepository.findOne(id).orElseThrow(() -> new EnjoyTripException(ErrorCode.CONTENT_NOT_FOUNT));
-        return ResponseResult.of("여행 관광지 게시글 상세보기 입니다.", placeResponseDto);
+        return NonPagingResponseResult.of("여행 관광지 게시글 상세보기 입니다.", placeResponseDto);
     }
 
     public PlaceResponseDto findById(Long id) {
