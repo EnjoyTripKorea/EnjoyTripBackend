@@ -19,7 +19,8 @@ public enum ErrorCode {
     FILE_UPLOAD_NOT_WORKING(HttpStatus.BAD_REQUEST,"파일 업로드 실패하였습니다."),
     CONTENT_NOT_FOUNT(HttpStatus.NOT_FOUND, "찾고자 하는 글이 없습니다."),
     FAIL_INSERT_GOLF_DATA(HttpStatus.INTERNAL_SERVER_ERROR, "데이터베이스에 골프 데이터 저장에 실패하였습니다"),
-    FAIL_COMMUNICATE_TOSSPAYMENT_API(HttpStatus.INTERNAL_SERVER_ERROR,"토스페이먼트 API와의 통신에 실패하였습니다.");
+    FAIL_COMMUNICATE_TOSSPAYMENT_API(HttpStatus.INTERNAL_SERVER_ERROR,"토스페이먼트 API와의 통신에 실패하였습니다."),
+    FAIL_COMMUNICATE_EXTERNAL_API(HttpStatus.INTERNAL_SERVER_ERROR,"외부 API와의 통신에 실패하였습니다.");
 
     private final HttpStatus httpstatus;
     private final String message;
