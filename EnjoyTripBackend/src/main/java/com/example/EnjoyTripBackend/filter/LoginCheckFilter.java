@@ -24,7 +24,7 @@ public class LoginCheckFilter implements Filter {
 
     private final ObjectMapper objectMapper;
 
-    private static final String[] whitelist = {"/api/signUp", "/api/login", "/api/logout", "/api/place"};
+    private static final String[] whitelist = {"/api/toss/success"};
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -59,6 +59,6 @@ public class LoginCheckFilter implements Filter {
     }
 
     private boolean isLoginCheckPath(String requestURI) {
-        return !PatternMatchUtils.simpleMatch(whitelist, requestURI);
+        return PatternMatchUtils.simpleMatch(whitelist, requestURI);
     }
 }
