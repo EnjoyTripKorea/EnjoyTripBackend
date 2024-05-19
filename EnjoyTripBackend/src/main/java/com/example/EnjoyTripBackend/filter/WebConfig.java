@@ -1,5 +1,6 @@
 package com.example.EnjoyTripBackend.filter;
 
+import com.example.EnjoyTripBackend.util.LimitedPageableArgumentResolver;
 import com.example.EnjoyTripBackend.util.SessionUserArgumentResolver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.Filter;
@@ -19,6 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new SessionUserArgumentResolver());
+        resolvers.add(new LimitedPageableArgumentResolver());
     }
 
     @Bean
