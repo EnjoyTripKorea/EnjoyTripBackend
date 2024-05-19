@@ -5,6 +5,7 @@ import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.golf.GolfRequestDto;
 import com.example.EnjoyTripBackend.dto.golf.GolfResponseDto;
 import com.example.EnjoyTripBackend.service.GolfService;
+import com.example.EnjoyTripBackend.util.LimitedSizePagination;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,6 +22,7 @@ public class GolfController {
     private final GolfService golfService;
 
     @GetMapping("/golf")
+    @LimitedSizePagination(maxSize = 20)
     public ResponseEntity<ResponseResult<List<GolfResponseDto>>> golfList(@PageableDefault(size = 20) Pageable pageable){
         return ResponseEntity.ok().body(golfService.golfList(pageable));
     }
@@ -31,6 +33,7 @@ public class GolfController {
     }
 
     @GetMapping("/golf/search")
+    @LimitedSizePagination(maxSize = 20)
     public ResponseEntity<ResponseResult<List<GolfResponseDto>>> golfSearchList(@PageableDefault(size = 20) Pageable pageable, @RequestBody GolfRequestDto golfRequestDto){
         return ResponseEntity.ok().body(golfService.golfSearchList(pageable, golfRequestDto));
     }
