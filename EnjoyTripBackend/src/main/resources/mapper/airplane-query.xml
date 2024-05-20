@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.EnjoyTripBackend.repository.AirplaneRepository">
+
+    <insert id="save" parameterType="com.example.EnjoyTripBackend.domain.Airplane">
+        INSERT
+          INTO airplane (airlineNm, arrAirportNm, depAirportNm, arrPlandTime, depPlandTime, economyCharge, prestigeCharge, vihicleId)
+        VALUES (#{airlineNm}, #{arrAirportNm}, #{depAirportNm}, #{arrPlandTime}, #{depPlandTime}, #{economyCharge}, #{prestigeCharge}, #{vihicleId})
+    </insert>
+
+    <select id="findAll" parameterType="com.example.EnjoyTripBackend.dto.PageRequestList" resultType="com.example.EnjoyTripBackend.dto.airplane.AirplaneResponseDto">
+        SELECT *
+          FROM airplane
+         LIMIT #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="com.example.EnjoyTripBackend.dto.airplane.AirplaneResponseDto">
+        SELECT *
+          FROM airplane
+         WHERE id = #{id}
+    </select>
+
+    <select id="findAllBySearch"  parameterType="com.example.EnjoyTripBackend.dto.PageRequestList" resultType="com.example.EnjoyTripBackend.dto.airplane.AirplaneResponseDto">
+        select *
+          from airplane
+         WHERE depAirportNm = #{data.depAirportNm}
+           AND arrAirportNm = #{data.arrAirportNm}
+           AND SUBSTRING(depPlandTime, 1, 8) = #{data.depPlandTime}
+           <if test="data.airlineNm != null and data.airlineNm != ''">
+           AND airlineNm = #{data.airlineNm}
+           </if>
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
+
+    <select id="findTotalCount" resultType="Long">
+        SELECT COUNT(*)
+          FROM airplane
+    </select>
+
+</mapper>
