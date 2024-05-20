@@ -13,5 +13,6 @@
         <mapper resource="mapper/place-query.xml"/>
         <mapper resource="mapper/golf-query.xml"/>
         <mapper resource="mapper/payment-query.xml"/>
+        <mapper resource="mapper/airplane-query.xml"/>
     </mappers>
 </configuration>
