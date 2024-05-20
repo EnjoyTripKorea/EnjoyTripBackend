@@ -1,7 +1,7 @@
 package com.example.EnjoyTripBackend.filter;
 
-import com.example.EnjoyTripBackend.util.LimitedPageableArgumentResolver;
-import com.example.EnjoyTripBackend.util.SessionUserArgumentResolver;
+import com.example.EnjoyTripBackend.util.argumentresolver.LimitedPageableArgumentResolver;
+import com.example.EnjoyTripBackend.util.argumentresolver.SessionUserArgumentResolver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.Filter;
 import lombok.extern.slf4j.Slf4j;

@@ -2,7 +2,7 @@ package com.example.EnjoyTripBackend.filter;
 
 import com.example.EnjoyTripBackend.exception.EnjoyTripException;
 import com.example.EnjoyTripBackend.exception.ErrorCode;
-import com.example.EnjoyTripBackend.util.SessionConst;
+import com.example.EnjoyTripBackend.util.argumentresolver.SessionConst;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;

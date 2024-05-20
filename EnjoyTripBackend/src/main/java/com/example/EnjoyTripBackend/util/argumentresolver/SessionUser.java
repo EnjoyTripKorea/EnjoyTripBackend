@@ -1,4 +1,4 @@
-package com.example.EnjoyTripBackend.util;
+package com.example.EnjoyTripBackend.util.argumentresolver;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
