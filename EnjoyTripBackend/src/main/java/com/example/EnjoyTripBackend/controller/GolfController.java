@@ -5,7 +5,7 @@ import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.golf.GolfRequestDto;
 import com.example.EnjoyTripBackend.dto.golf.GolfResponseDto;
 import com.example.EnjoyTripBackend.service.GolfService;
-import com.example.EnjoyTripBackend.util.LimitedSizePagination;
+import com.example.EnjoyTripBackend.util.argumentresolver.LimitedSizePagination;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

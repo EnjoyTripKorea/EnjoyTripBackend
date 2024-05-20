@@ -1,4 +1,4 @@
-package com.example.EnjoyTripBackend.util;
+package com.example.EnjoyTripBackend.util.collector;
 
 import com.example.EnjoyTripBackend.dto.golf.GolfClubDto;
 import com.example.EnjoyTripBackend.dto.golf.GolfClubListDto;

@@ -5,7 +5,7 @@ import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.airplane.AirplaneRequestDto;
 import com.example.EnjoyTripBackend.dto.airplane.AirplaneResponseDto;
 import com.example.EnjoyTripBackend.service.AirplaneService;
-import com.example.EnjoyTripBackend.util.LimitedSizePagination;
+import com.example.EnjoyTripBackend.util.argumentresolver.LimitedSizePagination;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

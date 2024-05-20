@@ -1,4 +1,4 @@
-package com.example.EnjoyTripBackend.util;
+package com.example.EnjoyTripBackend.util.argumentresolver;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -8,7 +8,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import static com.example.EnjoyTripBackend.util.SessionConst.LOGIN_MEMBER;
+import static com.example.EnjoyTripBackend.util.argumentresolver.SessionConst.LOGIN_MEMBER;
 
 @Slf4j
 public class SessionUserArgumentResolver implements HandlerMethodArgumentResolver {
