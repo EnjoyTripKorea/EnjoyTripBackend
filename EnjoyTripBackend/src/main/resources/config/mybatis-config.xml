@@ -14,5 +14,6 @@
         <mapper resource="mapper/golf-query.xml"/>
         <mapper resource="mapper/payment-query.xml"/>
         <mapper resource="mapper/airplane-query.xml"/>
+        <mapper resource="mapper/house-query.xml"/>
     </mappers>
 </configuration>

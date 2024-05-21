@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.EnjoyTripBackend.repository.HouseRepository">
+
+    <insert id="save" parameterType="com.example.EnjoyTripBackend.domain.House">
+        INSERT
+          INTO house (addr1, addr2, areacode, contentid, firstimage, mapx, mapy, mlevel, tel, title, sigungucode)
+        VALUES (#{addr1}, #{addr2}, #{areacode}, #{contentid}, #{firstimage}, #{mapx}, #{mapy}, #{mlevel}, #{tel}, #{title}, #{sigungucode})
+    </insert>
+
+    <select id="findAll" parameterType="com.example.EnjoyTripBackend.dto.PageRequestList" resultType="com.example.EnjoyTripBackend.dto.house.HouseResponseDto">
+        SELECT *
+          FROM house
+         LIMIT #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <select id="findById" parameterType="String" resultType="com.example.EnjoyTripBackend.dto.house.HouseResponseDto">
+        SELECT *
+          FROM house
+         WHERE id = #{id}
+    </select>
+
+    <select id="findAllBySearch"  resultType="com.example.EnjoyTripBackend.dto.house.HouseResponseDto">
+        select id, addr1, addr2, areacode, contentid, firstimage, mapx, mapy, mlevel, tel, title, sigungucode
+          from house
+       <where>
+           <if test="data.areacode != null and data.areacode != ''">
+                areacode = #{data.areacode}
+           </if>
+      </where>
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
+
+    <select id="findTotalCount" resultType="Long">
+        SELECT COUNT(*)
+          FROM house
+    </select>
+
+</mapper>
