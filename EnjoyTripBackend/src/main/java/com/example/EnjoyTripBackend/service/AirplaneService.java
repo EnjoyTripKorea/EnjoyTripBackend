@@ -1,14 +1,12 @@
 package com.example.EnjoyTripBackend.service;
 
 import com.example.EnjoyTripBackend.domain.Airplane;
+import com.example.EnjoyTripBackend.dto.airplane.AirplaneItem;
 import com.example.EnjoyTripBackend.dto.NonPagingResponseResult;
 import com.example.EnjoyTripBackend.dto.PageRequestList;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
 import com.example.EnjoyTripBackend.dto.airplane.AirplaneRequestDto;
 import com.example.EnjoyTripBackend.dto.airplane.AirplaneResponseDto;
-import com.example.EnjoyTripBackend.dto.golf.GolfRequestDto;
-import com.example.EnjoyTripBackend.dto.golf.GolfResponseDto;
-import com.example.EnjoyTripBackend.dto.place.PlaceResponseDto;
 import com.example.EnjoyTripBackend.exception.EnjoyTripException;
 import com.example.EnjoyTripBackend.exception.ErrorCode;
 import com.example.EnjoyTripBackend.repository.AirplaneRepository;
@@ -18,8 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Date;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,16 +25,16 @@ public class AirplaneService {
     private final AirplaneRepository airplaneRepository;
 
     @Transactional
-    public void save(AirplaneResponseDto airplaneResponseDto) {
+    public void save(AirplaneItem item) {
         Airplane airplane = Airplane.builder()
-                .airlineNm(airplaneResponseDto.getAirlineNm())
-                .arrAirportNm(airplaneResponseDto.getArrAirportNm())
-                .depAirportNm(airplaneResponseDto.getDepAirportNm())
-                .arrPlandTime(airplaneResponseDto.getArrPlandTime())
-                .depPlandTime(airplaneResponseDto.getDepPlandTime())
-                .economyCharge(airplaneResponseDto.getEconomyCharge())
-                .prestigeCharge(airplaneResponseDto.getPrestigeCharge())
-                .vihicleId(airplaneResponseDto.getVihicleId())
+                .airlineNm(item.getAirlineNm())
+                .arrAirportNm(item.getArrAirportNm())
+                .depAirportNm(item.getDepAirportNm())
+                .arrPlandTime(item.getArrPlandTime())
+                .depPlandTime(item.getDepPlandTime())
+                .economyCharge(item.getEconomyCharge())
+                .prestigeCharge(item.getPrestigeCharge())
+                .vihicleId(item.getVihicleId())
                 .build();
 
         airplaneRepository.save(airplane);
