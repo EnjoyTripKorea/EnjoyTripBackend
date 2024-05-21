@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GolfResponseDto {
 
-    private Long golf_id;
-    private String golfclub_name;
+    private Long golfId;
+    private String golfclubName;
     private String location;
     private String date;
-    private String golf_imageUrl;
-    private String green_fee_week;
-    private String green_fee_weekend;
+    private String golfImageUrl;
+    private String greenFeeWeek;
+    private String greenFeeWeekend;
     private double latitude;
     private double longitude;
 }

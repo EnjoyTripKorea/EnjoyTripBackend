@@ -32,9 +32,9 @@ public class GolfController {
         return ResponseEntity.ok().body(golfService.findById(id));
     }
 
-    @GetMapping("/golf/search")
+    @PostMapping("/golf/search")
     @LimitedSizePagination(maxSize = 20)
-    public ResponseEntity<ResponseResult<List<GolfResponseDto>>> golfSearchList(@PageableDefault(size = 20) Pageable pageable, @RequestBody GolfRequestDto golfRequestDto){
+    public ResponseEntity<ResponseResult<List<GolfResponseDto>>> golfSearchList(@PageableDefault(size = 6) Pageable pageable, @RequestBody GolfRequestDto golfRequestDto){
         return ResponseEntity.ok().body(golfService.golfSearchList(pageable, golfRequestDto));
     }
 
