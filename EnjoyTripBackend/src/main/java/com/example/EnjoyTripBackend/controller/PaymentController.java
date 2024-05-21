@@ -1,7 +1,7 @@
 package com.example.EnjoyTripBackend.controller;
 
 import com.example.EnjoyTripBackend.service.PaymentService;
-import com.example.EnjoyTripBackend.util.SessionUser;
+import com.example.EnjoyTripBackend.util.argumentresolver.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
