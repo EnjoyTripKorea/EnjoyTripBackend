@@ -15,5 +15,6 @@
         <mapper resource="mapper/payment-query.xml"/>
         <mapper resource="mapper/airplane-query.xml"/>
         <mapper resource="mapper/house-query.xml"/>
+        <mapper resource="mapper/camping-query.xml"/>
     </mappers>
 </configuration>

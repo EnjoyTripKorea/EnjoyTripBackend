@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.EnjoyTripBackend.repository.CampingRepository">
+
+    <insert id="save" parameterType="com.example.EnjoyTripBackend.domain.Camping">
+        insert
+          into camping
+        values (#{id}, #{name}, #{shortIntro}, #{Intro}, #{zipcode}, #{address}, #{latitude}, #{longitude}, #{imageUrl}, #{homepage}, #{tel})
+    </insert>
+
+    <select id="findAll" resultType="com.example.EnjoyTripBackend.dto.camping.CampingResponseDto">
+        select name, Intro, zipcode, address, latitude, longitude, imageUrl, homepage
+          from camping
+         where Intro IS NOT NULL AND Intro != ''
+         limit #{pageable.pageSize}
+        offset #{pageable.offset}
+    </select>
+
+    <select id="findTotalCount" resultType="long">
+        select count(*)
+        from camping
+    </select>
+</mapper>

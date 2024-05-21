@@ -7,7 +7,7 @@ import com.example.EnjoyTripBackend.dto.place.PlaceResponseDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceSearchwordRequestDto;
 import com.example.EnjoyTripBackend.service.PlaceService;
 import com.example.EnjoyTripBackend.service.S3Service;
-import com.example.EnjoyTripBackend.util.SessionUser;
+import com.example.EnjoyTripBackend.util.argumentresolver.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

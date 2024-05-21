@@ -1,4 +1,4 @@
-package com.example.EnjoyTripBackend.util;
+package com.example.EnjoyTripBackend.util.argumentresolver;
 
 import com.example.EnjoyTripBackend.exception.EnjoyTripException;
 import com.example.EnjoyTripBackend.exception.ErrorCode;

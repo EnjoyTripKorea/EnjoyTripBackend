@@ -3,7 +3,7 @@ package com.example.EnjoyTripBackend.controller;
 import com.example.EnjoyTripBackend.dto.member.LoginRequestDto;
 import com.example.EnjoyTripBackend.dto.member.SignUpRequestDto;
 import com.example.EnjoyTripBackend.service.MemberService;
-import com.example.EnjoyTripBackend.util.SessionConst;
+import com.example.EnjoyTripBackend.util.argumentresolver.SessionConst;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;

@@ -1,4 +1,4 @@
-package com.example.EnjoyTripBackend.util;
+package com.example.EnjoyTripBackend.util.collector;
 
 import com.example.EnjoyTripBackend.dto.airplane.AirplaneDto;
 import com.example.EnjoyTripBackend.dto.airplane.AirplaneItem;
