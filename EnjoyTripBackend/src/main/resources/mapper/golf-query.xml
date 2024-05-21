@@ -12,6 +12,7 @@
     <select id="findAll"  resultType="com.example.EnjoyTripBackend.dto.golf.GolfResponseDto">
         select golf_id, golfclub_name, location, date, golf_imageUrl, green_fee_week, green_fee_weekend, latitude, longitude
           from golf
+         where green_fee_week IS NOT NULL AND green_fee_week != ''
          limit #{pageable.pageSize}
         offset #{pageable.offset}
     </select>
@@ -27,10 +28,10 @@
           from golf
         <where>
             <if test="data.location != null and data.location != ''">
-                and location LIKE CONCAT('%', #{data.location}, '%')
+                and location LIKE CONCAT('%', #{data.location}, '%') AND green_fee_week IS NOT NULL AND green_fee_week != ''
             </if>
             <if test="data.date != null and data.date != ''">
-                and date = #{data.date}
+                and date = #{data.date} AND green_fee_week IS NOT NULL AND green_fee_week != ''
             </if>
         </where>
          limit #{pageable.pageSize}
