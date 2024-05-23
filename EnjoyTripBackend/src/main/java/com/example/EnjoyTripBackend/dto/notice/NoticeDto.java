@@ -19,4 +19,6 @@ public class NoticeDto {
     @NotEmpty
     private String content;
 
+    private String createdDate;
+
 }
