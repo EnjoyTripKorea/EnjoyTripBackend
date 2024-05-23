@@ -17,4 +17,5 @@ public class AirplaneResponseDto {
     private String economyCharge;
     private String prestigeCharge;
     private String vihicleId;
+    private String img;
 }
