@@ -26,7 +26,7 @@ public class AirplaneInfoCollector {
 
     private final AirplaneService airplaneService;
 
-    @Scheduled(cron = "* * * * * *")
+    //@Scheduled(cron = "* * * * * *")
     public void fetchFlightInfo() {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
