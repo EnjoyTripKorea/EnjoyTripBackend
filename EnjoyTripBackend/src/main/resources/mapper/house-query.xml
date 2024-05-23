@@ -13,6 +13,7 @@
     <select id="findAll" parameterType="com.example.EnjoyTripBackend.dto.PageRequestList" resultType="com.example.EnjoyTripBackend.dto.house.HouseResponseDto">
         SELECT *
           FROM house
+         where firstimage IS NOT NULL AND firstimage != ''
          LIMIT #{pageable.offset}, #{pageable.pageSize}
     </select>
 

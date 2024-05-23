@@ -48,4 +48,13 @@
     <delete id="deleteBlog">
         delete from place where place_id = #{id};
     </delete>
+
+    <select id="myPage"  resultType="com.example.EnjoyTripBackend.dto.place.MyPlaceResponseDto">
+        select m.username, p.title, p.content, p.placeImageUrl, p.modifiedDate
+          from member m
+         inner
+          join place p
+            on m.email = p.userEmail
+         where m.email = #{userEmail}
+    </select>
 </mapper>

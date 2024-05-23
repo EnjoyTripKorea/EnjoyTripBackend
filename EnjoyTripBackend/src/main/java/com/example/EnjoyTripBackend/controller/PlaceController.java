@@ -2,6 +2,7 @@ package com.example.EnjoyTripBackend.controller;
 
 import com.example.EnjoyTripBackend.dto.NonPagingResponseResult;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
+import com.example.EnjoyTripBackend.dto.place.MyPlaceResponseDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceRequestDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceResponseDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceSearchwordRequestDto;
@@ -71,5 +72,10 @@ public class PlaceController {
     public ResponseEntity<Void> deleteBlog(@PathVariable("id") Long id){
         placeService.deleteBlog(id);
         return ResponseEntity.status(NO_CONTENT).build();
+    }
+
+    @GetMapping("/place/mypage")
+    public ResponseEntity<NonPagingResponseResult<List<Optional<MyPlaceResponseDto>>>> myPage(@SessionUser String userEmail){
+        return ResponseEntity.ok().body(placeService.myPage(userEmail));
     }
 }

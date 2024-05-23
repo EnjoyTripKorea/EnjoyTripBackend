@@ -36,7 +36,7 @@ public class NoticeController {
     }
 
     @GetMapping("")
-    public ResponseEntity<ResponseResult<List<NoticeResponseDto>>> findAll(@PageableDefault(size = 5)Pageable pageable) {
+    public ResponseEntity<ResponseResult<List<NoticeResponseDto>>> findAll(@PageableDefault(size = 10)Pageable pageable) {
         return ResponseEntity.status(OK).body(noticeService.findAll(pageable));
     }
 

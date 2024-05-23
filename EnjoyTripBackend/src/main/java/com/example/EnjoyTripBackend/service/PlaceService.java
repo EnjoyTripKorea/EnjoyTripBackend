@@ -4,6 +4,7 @@ import com.example.EnjoyTripBackend.domain.Place;
 import com.example.EnjoyTripBackend.dto.NonPagingResponseResult;
 import com.example.EnjoyTripBackend.dto.PageRequestList;
 import com.example.EnjoyTripBackend.dto.ResponseResult;
+import com.example.EnjoyTripBackend.dto.place.MyPlaceResponseDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceRequestDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceResponseDto;
 import com.example.EnjoyTripBackend.dto.place.PlaceSearchwordRequestDto;
@@ -16,8 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
-@Service
+import java.util.Optional;@Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class PlaceService {
@@ -72,5 +72,9 @@ public class PlaceService {
     @Transactional
     public Long deleteBlog(Long id) {
         return placeRepository.deleteBlog(id);
+    }
+
+    public NonPagingResponseResult<List<Optional<MyPlaceResponseDto>>> myPage(String userEmail) {
+        return NonPagingResponseResult.of("작성한 블로그 글 입니다.", placeRepository.myPage(userEmail));
     }
 }

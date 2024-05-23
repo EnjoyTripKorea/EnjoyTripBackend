@@ -9,4 +9,12 @@
         values (#{id}, #{paymentKey}, #{userEmail}, #{orderName}, #{taxExemptionAmount}, #{orderId}, #{status}, #{country},
                 #{receipt}, #{currency}, #{totalAmount}, #{balanceAmount}, #{suppliedAmount}, #{vat}, #{taxFreeAmount}, now())
     </insert>
+
+    <select id="findAllPaymentHistory" resultType="com.example.EnjoyTripBackend.dto.payment.toss.MyPaymentHistoryDto">
+        SELECT m.username, p.orderName, p.totalAmount, p.createdDate
+          FROM member m
+         INNER JOIN payment p
+            ON p.userEmail = m.email
+         WHERE p.userEmail = #{email}
+    </select>
 </mapper>

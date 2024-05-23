@@ -1,6 +1,8 @@
 package com.example.EnjoyTripBackend.service;
 
 import com.example.EnjoyTripBackend.domain.Payment;
+import com.example.EnjoyTripBackend.dto.NonPagingResponseResult;
+import com.example.EnjoyTripBackend.dto.payment.toss.MyPaymentHistoryDto;
 import com.example.EnjoyTripBackend.dto.payment.toss.PaymentResultDto;
 import com.example.EnjoyTripBackend.exception.EnjoyTripException;
 import com.example.EnjoyTripBackend.exception.ErrorCode;
@@ -18,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -67,6 +70,7 @@ public class PaymentService {
                 .vat(paymentResultDto.getVat())
                 .taxFreeAmount(paymentResultDto.getTaxFreeAmount())
                 .build();
+        System.out.println(payment.getPaymentKey());
         return paymentRepository.save(payment);
     }
 
@@ -82,5 +86,10 @@ public class PaymentService {
 
         HttpEntity<String> requestHttpEntity = new HttpEntity<>(jsonObject.toString(), httpHeaders);
         return restTemplate.exchange(targetUrl, HttpMethod.POST, requestHttpEntity, String.class);
+    }
+
+    public NonPagingResponseResult<List<MyPaymentHistoryDto>> myPaymentPage(String userEmail) {
+        List<MyPaymentHistoryDto> myPaymentHistoryDto = paymentRepository.findAllPaymentHistory(userEmail);
+        return NonPagingResponseResult.of("나의 결제정보 데이터입니다.", myPaymentHistoryDto);
     }
 }
